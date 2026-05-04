@@ -37,10 +37,17 @@ def mage_stats(mages: list[dict]) -> dict:
 
 if __name__ == "__main__":
 
-    artifacts = [
-        {"name": "Fire", "power": 92, "type": "Staff"},
-        {"name": "Crystal", "power": 85, "type": "Orb"}
-    ]
+    artifacts = [{'name': 'Wind Cloak', 'power': 105, 'type': 'weapon'},
+                 {'name': 'Ice Wand', 'power': 71, 'type': 'armor'},
+                 {'name': 'Storm Crown', 'power': 118, 'type': 'focus'},
+                 {'name': 'Wind Cloak', 'power': 66, 'type': 'armor'}]
+
+    mages = [{'name': 'River', 'power': 59, 'element': 'fire'},
+             {'name': 'Phoenix', 'power': 96, 'element': 'shadow'},
+             {'name': 'Jordan', 'power': 75, 'element': 'shadow'},
+             {'name': 'Zara', 'power': 53, 'element': 'water'},
+             {'name': 'Rowan', 'power': 100, 'element': 'ice'}]
+    spells = ['shield', 'blizzard', 'fireball', 'lightning']
 
     print("Testing artifact sorter...")
     sorted_l = artifact_sorter(artifacts)
@@ -50,14 +57,14 @@ if __name__ == "__main__":
           f" ({sorted_l[1]["power"]} power)")
 
     print("\nTesting power filter...")
-    pwr_l = power_filter(artifacts, 90)
+    pwr_l = power_filter(mages, 90)
     print("The ones that overpass the minimum are:")
     for i in pwr_l:
-        print(f"{i["name"]} {i["type"]}"
+        print(f"{i["name"]} {i["element"]}"
               f" ({i["power"]} power)")
 
     print("\nTesting spell transformer...")
-    spell_l = spell_transformer(["fireball", "heal", "shield"])
+    spell_l = spell_transformer(spells)
     print(f"{" ".join(spell_l)}")
 
     print("\nTesting mage stats...")
