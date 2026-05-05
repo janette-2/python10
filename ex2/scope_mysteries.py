@@ -53,6 +53,18 @@ if __name__ == "__main__":
     print(f"Base {base1}, add {add1}: {acc(add1)}")
     add2 = 30
     print(f"Base {base1}, add {add2}: {acc(add2)}")
+
     print("\nTesting enchantment factory...")
+    enc1 = enchantment_factory("Flaming")
+    print(enc1("Sword"))
+    enc2 = enchantment_factory("Frozen")
+    print(enc1("Shield"))
 
     print("\nTesting memory vault...")
+    d_mem = memory_vault()
+    st = d_mem["store"]
+    rec = d_mem["recall"]
+    print("Store 'secret' = 42")
+    st("secret", "42")
+    print(f"Recall 'secret': {rec("secret")}")
+    print(f"Recall 'unknown': {rec("unknown")}")
