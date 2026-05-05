@@ -48,7 +48,11 @@ if __name__ == "__main__":
     print(f"counter_b call 1: {count_b()}")
 
     print("\nTesting spell accumulator...")
-    
+    base1, add1 = (100, 20)
+    acc = spell_accumulator(base1)
+    print(f"Base {base1}, add {add1}: {acc(add1)}")
+    add2 = 30
+    print(f"Base {base1}, add {add2}: {acc(add2)}")
     print("\nTesting enchantment factory...")
 
     print("\nTesting memory vault...")
