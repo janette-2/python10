@@ -26,7 +26,8 @@ def base_enchantment(power: int, element: str, target: str) -> str:
     return f"Cast {element} with power {power} on {target}"
 
 
-def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
+def partial_enchanter(
+        base_enchantment: Callable) -> dict[str, Callable]:
     d_ret = {"fire": partial(base_enchantment, 50, "Fire"),
              "water": partial(base_enchantment, 50, "Water"),
              "earth": partial(base_enchantment, 50, "Earth")

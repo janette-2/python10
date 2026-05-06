@@ -25,7 +25,8 @@ def power_validator(min_power: int) -> Callable:
     def decorator(func: Callable):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            power = args[0]
+            # For class method (mage.cast_spell(self, spell_name, power))
+            power = args[2]
             if power >= min_power:
                 return func(*args, **kwargs)
             return "Insufficient power for this spell"
@@ -43,17 +44,27 @@ def retry_spell(max_attempts: int) -> Callable:
                     return func(*args, **kwargs)
                 except Exception:
                     if attempt < max_attempts:
-                        print(f"Spell failed, retrying ... (attempt {attempt}/{max_attempts})")
+                        print("Spell failed, retrying ... ("
+                              f"attempt {attempt}/{max_attempts})")
                     else:
-                        return f"Spell casting failed after {max_attempts} attempts"
+                        res = (f"Spell casting failed after {max_attempts}"
+                               "attempts")
+                        return res
         return wrapper
     return decorator
 
 
-#class MageGuild:
-    #@staticmethod
-    #def validate_mage_name(name: str) -> bool
-    #def cast_spell(self, spell_name: str, power: int) -> str
+class MageGuild:
+    @staticmethod
+    def validate_mage_name(name: str) -> bool:
+        if len(name) >= 3 and all(char.isalpha() or
+                                  char.isspace() for char in name):
+            return True
+        return False
+
+    @power_validator(10)
+    def cast_spell(self, spell_name: str, power: int) -> str:
+        return f"Successfully cast {spell_name} with {power} power"
 
 
 if __name__ == "__main__":
@@ -72,15 +83,16 @@ if __name__ == "__main__":
 
     print(f"Result: {fireball()}")
 
+    """
     print("\nTesting power validator...")
 
     @power_validator(10)
-    def cast_spell(power, spell_name):
+    def cast(power, spell_name):
         return f"Successfully cast {spell_name} with {power} power"
 
-    print(cast_spell(test_powers[0], spell_names[-1]))
-    print(cast_spell(test_powers[2], spell_names[-2]))
-
+    print(cast(test_powers[0], spell_names[-1]))
+    print(cast(test_powers[2], spell_names[-2]))
+    """
     print("\nTesting retry spell...")
 
     # Function that provokes errors to force the retry:
@@ -90,3 +102,10 @@ if __name__ == "__main__":
         raise ValueError("Forced error")
     print(provoke_error())
     print("Waaaaaaagh spelled !")
+
+    print("\nTesting MageGuild...")
+    mage = MageGuild()
+    print(mage.validate_mage_name("Spell Name"))
+    print(mage.validate_mage_name("se"))
+    print(mage.cast_spell("Lightning", 15))
+    print(mage.cast_spell("Lightning", 1))
