@@ -93,7 +93,7 @@ if __name__ == "__main__":
     print(cast(test_powers[0], spell_names[-1]))
     print(cast(test_powers[2], spell_names[-2]))
     """
-    print("\nTesting retry spell...")
+    print("\nTesting retrying spell...")
 
     # Function that provokes errors to force the retry:
 

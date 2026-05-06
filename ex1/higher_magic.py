@@ -65,7 +65,9 @@ if __name__ == "__main__":
 
     print("Testing spell combiner...")
     comb_s = spell_combiner(spell1_s, spell_2_s)
-    print(comb_s(test_targets[0], test_values[0]))
+    print("Combined spell result:", end="")
+    c_res = comb_s(test_targets[0], test_values[0])
+    print(f" {c_res[0]}, {c_res[1]}")
 
     print("\nTesting power amplifier...")
     pow_s = power_amplifier(spell1_s, 2)
