@@ -51,23 +51,23 @@ if __name__ == "__main__":
 
     print("Testing artifact sorter...")
     sorted_l = artifact_sorter(artifacts)
-    print(f"{sorted_l[0]["name"]} {sorted_l[0]["type"]}"
-          f" ({sorted_l[0]["power"]} power) comes before"
-          f" {sorted_l[1]["name"]} {sorted_l[1]["type"]}"
-          f" ({sorted_l[1]["power"]} power)")
+    print(f"{sorted_l[0]['name']} {sorted_l[0]['type']}"
+          f" ({sorted_l[0]['power']} power) comes before"
+          f" {sorted_l[1]['name']} {sorted_l[1]['type']}"
+          f" ({sorted_l[1]['power']} power)")
 
     print("\nTesting power filter...")
     pwr_l = power_filter(mages, 90)
     print("The ones that overpass the minimum are:")
     for i in pwr_l:
-        print(f"{i["name"]} {i["element"]}"
-              f" ({i["power"]} power)")
+        print(f"{i['name']} {i['element']}"
+              f" ({i['power']} power)")
 
     print("\nTesting spell transformer...")
     spell_l = spell_transformer(spells)
-    print(f"{" ".join(spell_l)}")
+    print(f"{' '.join(spell_l)}")
 
     print("\nTesting mage stats...")
     stats_d = mage_stats(artifacts)
-    print(f"Max: {stats_d["max_power"]}, Min: {stats_d["min_power"]},"
-          f" Avg: {stats_d["avg_power"]}")
+    print(f"Max: {stats_d['max_power']}, Min: {stats_d['min_power']},"
+          f" Avg: {stats_d['avg_power']}")

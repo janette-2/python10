@@ -66,5 +66,5 @@ if __name__ == "__main__":
     rec = d_mem["recall"]
     print("Store 'secret' = 42")
     st("secret", "42")
-    print(f"Recall 'secret': {rec("secret")}")
-    print(f"Recall 'unknown': {rec("unknown")}")
+    print(f"Recall 'secret': {rec('secret')}")
+    print(f"Recall 'unknown': {rec('unknown')}")
